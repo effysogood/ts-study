@@ -1,22 +1,31 @@
-function add(n1, n2, showResult, phrase) {
-    // if(typeof n1 !== 'number' || typeof n2 !== 'number'){
-    //   throw new Error('Incorrect Input!')
-    // } --> JS environment
-    var result = n1 + n2;
-    if (showResult) {
-        console.log(phrase + result);
-    }
-    else {
-        return result;
-    }
-}
-var number1 = 4;
-var number2 = 2.5;
-var printResult = true;
-var resultPhrase = 'Result is : ';
-add(number1, number2, printResult, resultPhrase);
-// JS vs TS
-// The key difference is:
-// JavaScript uses "dynamic types" (resolved at runtime)
-// TypeScript uses "static types" (set during development)
-// -> 런타임에는 지원되지 않으며, 개발 시 컴파일 환경에서 타입 검사 및 에러
+// * Object
+// Any JavaScript object,
+// more specific types(type of object) are possible
+// * Array
+// Any JavaScript array, type can be flexible or strict
+// (regarding the element types)
+// const Person: {
+//   name: string;
+//   age: number;
+// };
+var person = {
+    name: 'effy',
+    age: 12,
+    hobbies: ['tennis', 'cooking'],
+};
+var favoriteActivities;
+favoriteActivities = ['tennis', 1];
+console.log(person.name);
+// TS는 저장된 값을 가지고 타입 추론이 가능함
+// 객체의 데이터 구조를 키 엔트리(키+타입)로 작성하여 구체화할 수 있지만,
+// TS가 타입 추론 가능하도록 작성하는 방식이 더 나음
+// 중첩된 개체 및 타입
+var product = {
+    id: 'abc1',
+    price: 12.99,
+    tags: ['great-offer', 'hot-and-new'],
+    details: {
+        title: 'Red carpet',
+        description: 'A great carpet - almost brand new!',
+    },
+};
