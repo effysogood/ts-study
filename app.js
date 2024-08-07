@@ -1,31 +1,23 @@
-// * Object
-// Any JavaScript object,
-// more specific types(type of object) are possible
-// * Array
-// Any JavaScript array, type can be flexible or strict
-// (regarding the element types)
-// const Person: {
-//   name: string;
-//   age: number;
-// };
-var person = {
-    name: 'effy',
-    age: 12,
-    hobbies: ['tennis', 'cooking'],
-};
-var favoriteActivities;
-favoriteActivities = ['tennis', 1];
-console.log(person.name);
-// TS는 저장된 값을 가지고 타입 추론이 가능함
-// 객체의 데이터 구조를 키 엔트리(키+타입)로 작성하여 구체화할 수 있지만,
-// TS가 타입 추론 가능하도록 작성하는 방식이 더 나음
-// 중첩된 개체 및 타입
-var product = {
-    id: 'abc1',
-    price: 12.99,
-    tags: ['great-offer', 'hot-and-new'],
-    details: {
-        title: 'Red carpet',
-        description: 'A great carpet - almost brand new!',
-    },
-};
+function combine(input1, input2, resultType) {
+    var result;
+    if ((typeof input1 === 'number' && typeof input2 === 'number') ||
+        resultType === 'as-number') {
+        result = +input1 + +input2;
+    }
+    else {
+        result = input1.toString() + input2.toString();
+    }
+    return result;
+    // if (resultType === 'as-number') {
+    //   return +result;
+    // } else {
+    //   return result.toString();
+    // }
+}
+var combinedAges = combine(24, 3, 'as-number');
+console.log(combinedAges);
+var combinedStringAges = combine('30', '25', 'as-number');
+console.log(combinedStringAges);
+var combinedNames = combine('Saeyoung', 'Effy', 'as-text');
+console.log(combinedNames);
+// Literal Type
