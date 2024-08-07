@@ -1,23 +1,13 @@
-function combine(input1, input2, resultType) {
-    var result;
-    if ((typeof input1 === 'number' && typeof input2 === 'number') ||
-        resultType === 'as-number') {
-        result = +input1 + +input2;
-    }
-    else {
-        result = input1.toString() + input2.toString();
-    }
-    return result;
-    // if (resultType === 'as-number') {
-    //   return +result;
-    // } else {
-    //   return result.toString();
-    // }
+function addNum(n1, n2) {
+    return n1 + n2;
 }
-var combinedAges = combine(24, 3, 'as-number');
-console.log(combinedAges);
-var combinedStringAges = combine('30', '25', 'as-number');
-console.log(combinedStringAges);
-var combinedNames = combine('Saeyoung', 'Effy', 'as-text');
-console.log(combinedNames);
-// Literal Type
+function printSumResult(num) {
+    console.log('Result:' + num);
+}
+// 함수의 반환값으로 undefined를 사용하지는 못함.
+// void가 명시적으로 이 함수에 반환 구문이 없다고 알려주기 때문
+// 하지만 ts가 void 추론 가능하기에 작성하지 않음
+printSumResult(addNum(1, 2));
+var combineValues;
+combineValues = addNum;
+console.log(combineValues(1, 34));
