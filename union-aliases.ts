@@ -49,3 +49,30 @@ function greetShorten(user: User) {
 function isOlder(user: User, checkAge: number) {
   return checkAge > user.age;
 }
+
+/** Literal Type
+: TypeScript에서 특정한 값 자체를 타입으로 사용할 수 있도록 하는 기능
+
+1. 문자열 리터럴 타입 : 특정 문자열 값만 허용
+2. 숫자 리터럴 타입 : 특정 숫자 값만 허용
+3. 불리언 리터럴 타입 : true 또는 false 값 중 하나만 허용
+ */
+
+type TrafficLight = 'red' | 'yellow' | 'green';
+function printTrafficLight(state: TrafficLight) {
+  switch (state) {
+    case 'red':
+      console.log('Stop');
+      break;
+    case 'yellow':
+      console.log('Caution');
+      break;
+    case 'green':
+      console.log('Go');
+      break;
+    default:
+      break;
+  }
+}
+// TrafficLight 타입은 'red', 'yellow', 'green' 정의된 세가지 값만 할당 가능
+// printTrafficLight는 해당 타입을 인수로 받으며, 이 외의 값 전달 시 컴파일 오류
