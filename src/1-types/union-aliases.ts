@@ -34,7 +34,7 @@ console.log(combinedNames);
 
 // Type Alias 및 Object Type
 // 타입 별칭을 사용하여 타입을 직접 '생성'
-// 유니온 타입 저장 뿐 아니라 복잡한 객체 타입에도 별칭을 붙일 수 있음
+// 유니온 타입 저장 뿐 아니라 복잡한 객체 타입을 병합해 별칭을 붙일 수 있음
 type User = { name: string; age: number };
 const u1: User = { name: 'effy', age: 30 }; // this works!
 // 불필요한 반복을 피하고, 타입을 중심에서 관리 할 수 있다.
