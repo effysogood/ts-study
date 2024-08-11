@@ -5,7 +5,7 @@ let userInput: unknown;
 userInput = 23;
 userInput = 'effy';
 
-// useName = userInput;
+// useName = userInput;d
 // 하지만 string을 unknown에서 담을 수는 없음
 // any와는 달리 unknown 타입 확인 가능
 
