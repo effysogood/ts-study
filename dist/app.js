@@ -1,53 +1,55 @@
 "use strict";
-// var, let, const
+class Department {
+    constructor(id, name) {
+        this.id = id;
+        this.name = name;
+        // private readonly id: string;
+        // private name: string;
+        this.employees = [];
+        // this.id = id;
+        // this.name = name;
+    }
+    describe() {
+        console.log(`Department (${this.id}): ${this.name}`);
+    }
+    addEmployee(employee) {
+        this.employees.push(employee);
+    }
+    printEmployeeInformation() {
+        console.log(this.employees.length);
+        console.log(this.employees);
+    }
+}
+const development = new Department('D1', 'Development');
+development.addEmployee('effy');
+development.addEmployee('chang');
+// development.employees[2] = 'Anna'; // !! ERROR : Private field !!
+development.describe();
+development.printEmployeeInformation();
+const developmentCopied = { name: 'DUMMY', describe: development.describe };
+// developmentCopied.describe();
+// QUIZ
+// 1. 클래스의 주요 개념은 무엇인가요?
+// 클래스는 자바스크립트 객체에 대한 청사진입니다.
+// 2. 클래스 속성(프로퍼티)이란 무엇인가요?
+// 클래스의 변수를 의미합니다.
+// 3. private과 public 한정자(접근제어자)의 개념은 무엇인가요?
+// private 속성은 "클래스 밖에서 접근할 수 없는 것"으로 규정
+// 오직 클래스 내부에서만(예: 클래스 메소드 내부) 접근 가능
+// 4. 다음 코드를 줄일 수 있는 가장 최선의 방법은 무엇인가요?
 {
-    const userName = 'effy';
-    let userAge = 10;
-    function add(a, b) {
-        var result; // 전역 범위 및 함수 범위
-        result = a + b;
-        return result;
+    class Product {
+        constructor(name, pr) {
+            this.title = name;
+            this.price = pr;
+            this.isListed = true;
+        }
     }
-    // console.log(result);
-    if (userAge > 20) {
-        let isOld = true;
-        console.log(isOld);
+    class ShortenProduct {
+        constructor(title, price) {
+            this.title = title;
+            this.price = price;
+            this.isListed = true;
+        }
     }
 }
-// Arrow Function
-const add2 = (a, b = 10) => a + b;
-const add3 = (a = 12, b) => a + b;
-console.log(add2(2, 5));
-const printOutput = (output) => console.log(output);
-printOutput(add2(3, 4));
-printOutput(add2(3));
-// printOutput(add3(3)); // 인자는 순서대로 적용, 두번째 인자 누락 !! ERROR !!
-const button = document.querySelector('button');
-if (button) {
-    button.addEventListener('click', (event) => console.log(event));
-}
-// Spread Operator
-// 펼치고 싶은 배열이나 객체, 해당 모든 요소를 가져와 목록으로 추가
-const hobbies = ['Sports', 'Cooking'];
-const activeHobbies = ['Swimming'];
-activeHobbies.push(...hobbies);
-const effy = {
-    firstName: 'effy',
-    lastName: 'choi',
-};
-const copiedEffy = Object.assign({}, effy); // 새 객체를 생성, 키-쌍 값이 추가됨
-// Spread Parameter
-// 쉼표로 구분된 값을 병합, 인수를 무제한으로 사용
-const add4 = (...numbers) => {
-    return numbers.reduce((curResult, curValue) => {
-        return curResult + curValue;
-    }, 0);
-};
-const addNumbers = add4(3, 4, 5, 56, 6);
-console.log(addNumbers);
-// Destructuring
-const [hobby1, hobby2, ...extra] = hobbies;
-console.log(hobbies, hobby1, hobby2);
-const { firstName: nickname, lastName } = effy;
-// 객체에 있는 속성 이름이어야 해당 키의 값을 가져올 수 있음
-// 새로운 이름으로 지정도 가능 (타입이 아닌 이름 지정)
