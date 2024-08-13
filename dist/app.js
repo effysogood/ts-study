@@ -20,14 +20,37 @@ class Department {
         console.log(this.employees);
     }
 }
-const development = new Department('D1', 'Development');
-development.addEmployee('effy');
-development.addEmployee('chang');
+class ITDepartment extends Department {
+    constructor(id, admins) {
+        super(id, 'IT');
+        this.admins = admins;
+        this.admins = admins;
+    }
+}
+class AccountingDepartment extends Department {
+    constructor(id, reports) {
+        super(id, 'Accounting');
+        this.reports = reports;
+    }
+    addReport(text) {
+        this.reports.push(text);
+    }
+    printReports() {
+        console.log(this.reports);
+    }
+}
+const it = new ITDepartment('D1', ['Max', 'Effy']);
+it.addEmployee('effy');
+it.addEmployee('chang');
+it.describe();
+it.printEmployeeInformation();
+const accounting = new AccountingDepartment('A1', ['tax']);
+accounting.describe();
+accounting.printReports();
 // development.employees[2] = 'Anna'; // !! ERROR : Private field !!
-development.describe();
-development.printEmployeeInformation();
-const developmentCopied = { name: 'DUMMY', describe: development.describe };
-// developmentCopied.describe();
+const itCopied = { name: 'DUMMY', describe: it.describe };
+// accountingCopied.describe();
+// --------------------------------------------------------------------
 // QUIZ
 // 1. 클래스의 주요 개념은 무엇인가요?
 // 클래스는 자바스크립트 객체에 대한 청사진입니다.

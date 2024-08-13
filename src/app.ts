@@ -11,6 +11,7 @@ class Department {
   describe(this: Department) {
     console.log(`Department (${this.id}): ${this.name}`);
   }
+
   addEmployee(employee: string) {
     this.employees.push(employee);
   }
@@ -21,18 +22,44 @@ class Department {
   }
 }
 
-const development = new Department('D1', 'Development');
+class ITDepartment extends Department {
+  constructor(id: string, public admins: string[]) {
+    super(id, 'IT');
+    this.admins = admins;
+  }
+}
 
-development.addEmployee('effy');
-development.addEmployee('chang');
+class AccountingDepartment extends Department {
+  constructor(id: string, private reports: string[]) {
+    super(id, 'Accounting');
+  }
+
+  addReport(text: string) {
+    this.reports.push(text);
+  }
+
+  printReports() {
+    console.log(this.reports);
+  }
+}
+
+const it = new ITDepartment('D1', ['Max', 'Effy']);
+
+it.addEmployee('effy');
+it.addEmployee('chang');
+
+it.describe();
+it.printEmployeeInformation();
+
+const accounting = new AccountingDepartment('A1', ['tax']);
+accounting.describe();
+accounting.printReports();
 
 // development.employees[2] = 'Anna'; // !! ERROR : Private field !!
+const itCopied = { name: 'DUMMY', describe: it.describe };
+// accountingCopied.describe();
 
-development.describe();
-development.printEmployeeInformation();
-
-const developmentCopied = { name: 'DUMMY', describe: development.describe };
-// developmentCopied.describe();
+// --------------------------------------------------------------------
 
 // QUIZ
 // 1. 클래스의 주요 개념은 무엇인가요?
