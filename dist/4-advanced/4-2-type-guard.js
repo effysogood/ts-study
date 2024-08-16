@@ -1,8 +1,9 @@
 "use strict";
 /**
  * Type Guards
- * 어떤 속성이나 메소드가 존재하는지, 이용하기 전에 확인하는 작업
- * 사용 가능한 메소드 확인, typeof, (객체)instaceof, in..
+ * 어떤 속성이나 메소드가 존재하는지, 이용하기 전 확인!
+ * 런타임 시 특정 작업을 수행하기 전에 해당 타입을 검사하는 코드 패턴
+ * typeof, (객체)instaceof, in..
  */
 {
     function add(a, b) {
@@ -50,4 +51,29 @@
     }
     useVehicle(v1);
     useVehicle(v2);
+}
+// QUIZ
+// 1. 타입 가드란 무엇인가요?
+// 런타임 시 특정 작업을 수행하기 전에 해당 타입을 검사하는 코드 패턴
+// 타입 가드를 사용하면 값으로 작업을 수행하기 전에 타입을 검하사여 런타임 오류 방지
+// 2. 다음 타입 가드 중 런타임 오류를 절대로 발생시키지 않는 것은 무엇인가요?
+{
+    // function size1(input: string | number) {
+    //   if (input instanceof 'string') {
+    //     return input.length;
+    //   }
+    //   return input;
+    // } >> 'string' 문자열은 객체의 인스턴스가 될 수 없음
+    // function size2(input: string | number) {
+    //   if (<string>input) {
+    //     return input.length;
+    //   }
+    //   return input;
+    // } >> string 타입으로 강제 캐스팅 하였기에 number에는 length 메서드 존재하지 않아 에러.
+    function size3(input) {
+        if (typeof input === 'string') {
+            return input.length;
+        }
+        return input;
+    }
 }

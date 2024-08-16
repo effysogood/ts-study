@@ -1,6 +1,6 @@
 "use strict";
 /**
- * Indexed Type
+ * Indexed Access Type
  * 객체에서 사용되는 key/value를 동적으로 사용 가능
  */
 {

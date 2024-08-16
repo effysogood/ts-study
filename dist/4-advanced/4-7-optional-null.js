@@ -15,15 +15,13 @@ var _a;
 }
 /**
  * Nullish Collapsing
- * Null 병합 연산자 ??
+ * 널리시 병합
  */
 {
     const userInput = ''; // null, undefined 과 같은 falsy 값
     const storedData = userInput || 'Default'; // userInput이 falsy하기에 풀백 값을 가져오게 됨.
-    console.log(storedData); // Default
     // 그렇다면 '' 값을 유지하고 싶다면?
-    const nullInput = null;
     const storedNullData = userInput !== null && userInput !== void 0 ? userInput : 'Default';
-    console.log(nullInput); // null
-    console.log(storedNullData); // '' empty string (undefined나 null이 아닌 이상)
+    console.log(storedData);
+    console.log(storedNullData);
 }
