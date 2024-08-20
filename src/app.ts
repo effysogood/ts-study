@@ -1,57 +1,85 @@
+/**
+ * class-validator 패키지
+ * 다양한 검사 항목, 메타프로그밍에 활용해 부가 설정 및 로직 추가 가능
+ * Nest.js, Angular.js 활용
+ */
+
 {
-  function extractAndConvert<T extends object, K extends keyof T>(
-    obj: T,
-    key: K
-  ) {
-    return `Value: ${obj[key]}`;
+  interface ValidatorConfig {
+    [property: string]: {
+      [validatableProp: string]: string[]; // ['required', 'positive']
+    };
   }
 
-  const person = {
-    name: 'effy',
-    age: 20,
-  };
+  const registeredValidators: ValidatorConfig = {};
 
-  console.log(extractAndConvert(person, 'name'));
+  //프로퍼티 데코레이터
+  function Required(target: any, propName: string) {
+    registeredValidators[target.constructor.name] = {
+      ...registeredValidators[target.constructor.name],
+      // 검사를 추가할 프로퍼티의 이름을 키로 사용
+      [propName]: [
+        ...(registeredValidators[target.constructor.name]?.[propName] ?? []),
+        'required',
+      ],
+    };
+  }
 
-  class DataStorage<T> {
-    private data: T[] = [];
+  function PositiveNumber(target: any, propName: string) {
+    registeredValidators[target.constructor.name] = {
+      ...registeredValidators[target.constructor.name],
+      [propName]: [
+        ...(registeredValidators[target.constructor.name]?.[propName] ?? []),
+        'positive',
+      ],
+    };
+  }
 
-    addItem(item: T) {
-      this.data.push(item);
+  function validate(obj: any) {
+    const objValidatorConfig = registeredValidators[obj.constructor.name];
+    if (!objValidatorConfig) {
+      return true;
     }
-    removeItem(item: T) {
-      if (this.data.indexOf(item) === -1) {
-        this.data.splice(this.data.indexOf(item), 1);
+    let isValid = true;
+    for (const prop in objValidatorConfig) {
+      for (const validator of objValidatorConfig[prop]) {
+        switch (validator) {
+          case 'required':
+            isValid = isValid && !!obj[prop];
+          case 'positive':
+            isValid = isValid && obj[prop] > 0;
+        }
       }
+    }
+    return true;
+  }
+
+  class Course {
+    @Required
+    title: string;
+    @PositiveNumber
+    price: number;
+
+    constructor(t: string, p: number) {
+      this.title = t;
+      this.price = p;
+    }
+  }
+
+  const courseForm = document.querySelector('form');
+  courseForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const titleEl = document.getElementById('title') as HTMLInputElement;
+    const priceEl = document.getElementById('price') as HTMLInputElement;
+
+    const title = titleEl.value;
+    const price = +priceEl.value;
+
+    const createdCourse = new Course(title, price);
+    if (!validate(createdCourse)) {
+      alert(`Invalid input, please try again!`);
       return;
     }
-    getItem() {
-      return [...this.data];
-    }
-  }
-  const textStorage = new DataStorage<string>();
-  textStorage.addItem('effy');
-  textStorage.addItem('chang');
-  textStorage.removeItem('chang');
-  console.log(textStorage.getItem());
-
-  const objStorage = new DataStorage<object>();
-  objStorage.addItem({ name: 'effy' }); // a
-  objStorage.addItem({ name: 'chang' });
-  objStorage.removeItem({ name: 'effy' }); // b
-  console.log(objStorage.getItem()); // Still {name: 'effy'}
-
-  // WHY??? 새로운 객체(a != b)가 생성될 때는 각각 다른 주소를 가지게 됨!
-  // 객체를 this로 참조할때, 다른 주소값을 가지고 있기에 (동일하게 생겼지만)
-  // indexOf는 결국 아무것도 찾지 못하니 -1을 반환하게 되어,
-  // 마지막 요소(chang)를 빼게 되는 것.
-
-  // ✅
-  // const array = [NaN];
-  // array.indexOf(NaN); // -1
-
-  // How to solve?
-  // 같은 메모리 주소를 가지는 객체로 할당해주어야만 해결이 가능
-  // 비원시타입은 지원을 해주지 않기에 문자열, 타입, 불리언 등의 타입 제약을 걸어주는 것이기도 함!
-  // Plus, 확장해서 쓴다거나 interface를 사용하는 것이 더 적합해보임?
+    console.log(createdCourse);
+  });
 }
