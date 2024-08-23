@@ -1,4 +1,3 @@
-
 ```
 ts-study
 ├─ README.md
@@ -8,7 +7,7 @@ ts-study
 │  │  ├─ 1-2-core.js
 │  │  ├─ 1-3-enum.js
 │  │  ├─ 1-4-functions.js
-│  │  ├─ 1-5-union-aliases.js
+│  │  ├─ 1-5-union-aliases.js
 │  │  ├─ 1-6-unknow-never.js
 │  │  └─ 1-7-js-core.js
 │  ├─ 2-module
@@ -51,7 +50,7 @@ ts-study
 │  │  ├─ 1-2-core.ts
 │  │  ├─ 1-3-enum.ts
 │  │  ├─ 1-4-functions.ts
-│  │  ├─ 1-5-union-aliases.ts
+│  │  ├─ 1-5-union-aliases.ts
 │  │  ├─ 1-6-unknow-never.ts
 │  │  └─ 1-7-js-core.ts
 │  ├─ 2-module

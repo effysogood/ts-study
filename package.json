@@ -1,23 +1,25 @@
 {
-  "name": "ts-study",
+  "name": "understanding-typescript",
   "version": "1.0.0",
-  "description": "",
+  "description": "Understanding TypeScript Course Setup",
   "main": "app.js",
   "scripts": {
-    "start": "lite-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server",
+    "build": "webpack"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/effysogood/ts-study.git"
-  },
-  "author": "",
+  "keywords": [
+    "typescript",
+    "course"
+  ],
+  "author": "Sayoung Choi",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/effysogood/ts-study/issues"
-  },
-  "homepage": "https://github.com/effysogood/ts-study#readme",
   "devDependencies": {
-    "lite-server": "^2.6.1"
+    "lite-server": "^2.5.4",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.2",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
   }
 }

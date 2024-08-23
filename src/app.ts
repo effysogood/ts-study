@@ -1,23 +1,6 @@
-class ProjectInput {
-  templateElement: HTMLTemplateElement;
-  hostElement: HTMLDivElement;
-  element: HTMLFormElement;
+import { ProjectInput } from './components/project-input';
+import { ProjectList } from './components/project-list';
 
-  constructor() {
-    this.templateElement = document.getElementById(
-      'project-input'
-    )! as HTMLTemplateElement;
-    this.hostElement = document.getElementById('app')! as HTMLDivElement;
-
-    const importedNode = document.importNode(
-      this.templateElement.content,
-      true
-    );
-
-    this.element = importedNode.firstElementChild as HTMLFormElement;
-  }
-
-  private attach() {
-    this.hostElement.insertAdjacentElement('afterbegin', this.element);
-  }
-}
+new ProjectInput();
+new ProjectList('active');
+new ProjectList('finished');
